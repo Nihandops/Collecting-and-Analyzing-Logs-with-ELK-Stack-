@@ -1,0 +1,22 @@
+sudo tee /etc/nginx/sites-available/frontend.conf > /dev/null <<'EOF'
+log_format elk_logging escape=json '{'
+    '"timestamp": "$time_iso8601",'
+    '"remote_addr": "$http_x_forwarded_for",'
+    '"proxy_addr": "$remote_addr",'
+    '"request": "$request",'
+    '"status": "$status",'
+    '"body_bytes_sent": "$body_bytes_sent",'
+    '"http_user_agent": "$http_user_agent"'
+'}';
+
+server {
+    listen 80;
+    server_name localhost;
+    root /var/www/frontend;
+    index index.html;
+    access_log /var/log/nginx/frontend_access.log elk_logging;
+    error_log /var/log/nginx/frontend_error.log;
+    location / { try_files $uri $uri/ =404; }
+    location /error500 { return 500; }
+}
+EOF
