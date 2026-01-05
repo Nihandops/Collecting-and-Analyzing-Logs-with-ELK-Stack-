@@ -1,0 +1,18 @@
+sudo mkdir -p /var/www/frontend
+sudo nano /var/www/frontend/index.html
+
+paste this content:
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Frontend Test</title>
+  <style>
+    body {display: flex; align-items: center; justify-content: center; height: 100vh; flex-direction: column;}
+  </style>
+</head>
+<body>
+  <h1>Welcome to the Frontend!</h1>
+  <p>Status: 200 OK</p>
+</body>
+</html>
