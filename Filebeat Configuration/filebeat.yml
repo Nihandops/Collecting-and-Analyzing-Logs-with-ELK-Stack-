@@ -1,0 +1,11 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/nginx/frontend_access.log
+    json.keys_under_root: true
+    fields:
+      server: nginx
+
+output.logstash:
+  hosts: ["<elk-server-ip>:5044"]
