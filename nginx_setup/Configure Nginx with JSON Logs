@@ -20,3 +20,10 @@ server {
     location /error500 { return 500; }
 }
 EOF
+
+
+then
+sudo ln -s /etc/nginx/sites-available/frontend.conf /etc/nginx/sites-enabled/
+sudo rm /etc/nginx/sites-enabled/default
+sudo nginx -t && sudo systemctl reload nginx
+
